@@ -1,0 +1,66 @@
+:root {
+  --bg: #fbfbfc;
+  --surface: #ffffff;
+  --border: #e3e3e8;
+  --text: #1b1b1f;
+  --muted: #6b6b76;
+  --accent: #3b5bdb;
+  --accent-soft: #eef1fd;
+  --danger: #b3261e;
+  --danger-soft: #fdecea;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.04);
+
+  font:
+    16px/1.5 system-ui,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131418;
+    --surface: #1c1d23;
+    --border: #2e3038;
+    --text: #f1f2f4;
+    --muted: #9a9aa5;
+    --accent: #8ea3ff;
+    --accent-soft: #23273a;
+    --danger: #ff9c92;
+    --danger-soft: #3a1f1d;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2 {
+  color: var(--text);
+  line-height: 1.25;
+}
+
+code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.9em;
+  background: var(--accent-soft);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  color: inherit;
+}

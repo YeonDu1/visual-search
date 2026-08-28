@@ -1,0 +1,341 @@
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+/* --- header --------------------------------------------------------------- */
+header h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.badge.ok {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.badge.down {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+/* --- controls ------------------------------------------------------------- */
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin: 1.75rem 0 1rem;
+  flex-wrap: wrap;
+}
+
+.text-search {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1 1 22rem;
+}
+
+.text-search input {
+  flex: 1;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.text-search input:focus-visible,
+.k-selector select:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+button {
+  cursor: pointer;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.65rem 1.15rem;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  button {
+    color: #14151a;
+  }
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.k-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.k-selector select {
+  padding: 0.6rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* --- dropzone ------------------------------------------------------------- */
+.dropzone {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition:
+    border-color 0.12s,
+    background 0.12s;
+}
+
+.dropzone.dragging {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.dropzone-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--muted);
+  width: 64px;
+  text-align: center;
+}
+
+.dropzone .preview {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.dropzone-text {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.dropzone-title {
+  color: var(--muted);
+  max-width: 40ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+button.link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+/* --- banners and status --------------------------------------------------- */
+.banner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 1rem 0;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+}
+
+.banner.error {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border: 1px solid currentColor;
+}
+
+.banner.error code {
+  background: rgba(0, 0, 0, 0.06);
+  color: inherit;
+}
+
+.status {
+  color: var(--muted);
+  margin: 2rem 0;
+}
+
+/* --- classification ------------------------------------------------------- */
+.classification {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.classification h2 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.hint {
+  color: var(--muted);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.classification ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.classification li {
+  display: grid;
+  grid-template-columns: minmax(9rem, 14rem) 1fr 3.5rem 5.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.classification li.top .label {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.classification .bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  overflow: hidden;
+}
+
+.classification .bar > span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.classification .probability {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.classification .cosine {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .classification li {
+    grid-template-columns: 1fr 3.5rem;
+  }
+
+  .classification .bar,
+  .classification .cosine {
+    display: none;
+  }
+}
+
+/* --- results grid --------------------------------------------------------- */
+.results-heading {
+  margin: 1.75rem 0 0.9rem;
+  font-size: 1rem;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.grid.stale {
+  opacity: 0.45;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.card-image {
+  position: relative;
+  background: #fff;
+}
+
+.card-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+}
+
+.score {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(20, 20, 26, 0.78);
+  color: #fff;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.article-type {
+  margin: 0.6rem 0.75rem 0.1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+
+.product-name {
+  margin: 0 0.75rem 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: var(--text);
+}
