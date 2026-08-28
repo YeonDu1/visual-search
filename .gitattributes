@@ -1,0 +1,16 @@
+# Line endings
+#
+# Everything Git detects as text is stored LF and checked out LF, on Windows
+# too. eol=lf overrides core.autocrlf=true, which is what was rewriting files
+# to CRLF on checkout and then warning about converting them back on the way
+# in. Nothing in this repo needs CRLF: no .bat or .cmd files, and Python,
+# Node and PowerShell all read LF fine.
+* text=auto eol=lf
+
+# SVG is XML: normalize it like any other text file so it stays diffable.
+*.svg text eol=lf
+
+# Binary: no line-ending conversion, no diff, no merge.
+*.png binary
+*.parquet binary
+*.npy binary
