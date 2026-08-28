@@ -32,17 +32,17 @@ Model:   https://huggingface.co/openai/clip-vit-base-patch32
 
 \## Data
 
-\- Raw images:  data/fashion-dataset/images/     <-- VERIFY THIS PATH
+\- Processed:  data/images\_224/       44,441 JPEGs, short side 224, \~419MB
 
-\- Metadata:    data/fashion-dataset/styles.csv  <-- VERIFY THIS PATH
+\- Catalog:    data/catalog.parquet   44,441 rows
 
-\- Processed:   data/images\_224/    (created by src/prepare.py)
+&#x20;             45 subCategories, 142 articleTypes
 
-\- Catalog:     data/catalog.parquet (created by src/prepare.py)
+\- Raw dataset has been deleted after preprocessing. Re-download from Kaggle
+
+&#x20; only if src/prepare.py needs to change.
 
 \- Everything under data/ and artifacts/ is gitignored. Never commit it.
-
-
 
 \## Layout
 
