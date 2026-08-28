@@ -182,6 +182,44 @@ Model:   https://huggingface.co/openai/clip-vit-base-patch32
 
 
 
+\## Zero-shot subCategory metrics
+
+\- Command: python -m src.zeroshot   (all 44,441 products, 45 labels, 0.5 s)
+
+\- Prompt ensembling: 5 templates x each label's surface forms, mean of the
+
+&#x20; prompt embeddings, re-normalized. Two variants are always reported.
+
+\- plain    (label lowercased, 225 prompts):
+
+&#x20; overall 0.6504, macro 0.5149. Majority baseline ('Topwear', 15,401 of
+
+&#x20; 44,441) 0.3465 overall / 0.0222 macro.
+
+\- expanded (LABEL\_SURFACES phrasings, 415 prompts):
+
+&#x20; overall 0.6835, macro 0.6238. Same baseline.
+
+\- The expanded surface forms are the fix for dataset jargon labels, worth
+
+&#x20; +0.033 overall and +0.109 macro. Biggest per-class gains: Apparel Set
+
+&#x20; +0.78, Lips +0.66, Bottomwear +0.65, Accessories +0.57, Eyes +0.49.
+
+\- Collapsed under both variants (accuracy 0, mass absorbed by a neighbour):
+
+&#x20; Beauty Accessories, Free Gifts, Mufflers, Vouchers, Wristbands.
+
+&#x20; Sports Accessories / Wristbands have cosine 0.992 and articleType
+
+&#x20; Jaccard 1.00 -- both classes are only "Wristbands", so no prompt can
+
+&#x20; separate them. Fragrance / Perfumes (Jaccard 0.33) is the same defect.
+
+&#x20; Mufflers -> Scarves is CLIP conflation, not a data defect (Jaccard 0).
+
+
+
 \## Commands
 
 \- Prepare:  python -m src.prepare
@@ -189,6 +227,8 @@ Model:   https://huggingface.co/openai/clip-vit-base-patch32
 \- Embed:    python -m src.embed
 
 \- Evaluate: python -m src.eval --mode both
+
+\- Zeroshot: python -m src.zeroshot
 
 \- API:      flask --app api.app run --debug
 
