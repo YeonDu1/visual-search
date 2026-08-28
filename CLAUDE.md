@@ -38,6 +38,16 @@ Model:   https://huggingface.co/openai/clip-vit-base-patch32
 
 &#x20;             45 subCategories, 142 articleTypes
 
+\- Embeddings: artifacts/embeddings.npy  (44,441, 512) float32, L2-normalized, \~87MB
+
+\- IDs:        artifacts/ids.json        44,441 ints. Row i of embeddings.npy is
+
+&#x20;             entry i of ids.json; both follow catalog row order.
+
+\- Full encode: 44,441 images in 45.8s (970 img/s incl. image loading) at
+
+&#x20; batch 256, peak VRAM 1114MB allocated / 1314MB reserved on the 4060.
+
 \- Raw dataset has been deleted after preprocessing. Re-download from Kaggle
 
 &#x20; only if src/prepare.py needs to change.
@@ -73,6 +83,14 @@ Model:   https://huggingface.co/openai/clip-vit-base-patch32
 &#x20; batch. Never silently fall back to CPU.
 
 \- DataLoader with num\_workers=4, persistent\_workers=True.
+
+\- The DataLoader image transform must center-crop with floor offsets,
+
+&#x20; (size-crop)//2, to match CLIPImageProcessor. torchvision CenterCrop
+
+&#x20; rounds instead, which shifts every 224x299 image by one pixel and
+
+&#x20; silently degrades every embedding.
 
 \- Use pathlib for all paths. No hardcoded absolute paths, no forward-slash
 
