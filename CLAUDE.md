@@ -128,6 +128,58 @@ Model:   https://huggingface.co/openai/clip-vit-base-patch32
 
 \- eval.py must print the metric definition next to the numbers.
 
+\- Retrieval numbers are for reference only. They are reproduced, not trusted:
+
+&#x20; re-run the command below rather than quoting these from memory.
+
+\## Measured metrics
+
+\- Command: python -m src.eval --mode both   (seed 42, 1000-product sample)
+
+\- articletype mode, text -> image, ranked over 44,440 products with the
+
+&#x20; query product excluded from its own results:
+
+&#x20; top-1 0.7340, top-5 0.9300, MRR 0.8187.
+
+&#x20; Random baseline 0.0530 / 0.2163 / 0.1453, i.e. 4.3x lift at top-5.
+
+&#x20; The baseline is high because articleType is coarse: the mean query has
+
+&#x20; 2,355 relevant items of 44,440 and the median rank of the first relevant
+
+&#x20; result is 1. Passing --include-self moves each number by about +0.002.
+
+\- strict mode, text -> image, query = productDisplayName, relevant = the query
+
+&#x20; product only (exact id), ranked over all 44,441 products:
+
+&#x20; R@1 0.0440, R@5 0.1190, R@10 0.1820, MRR 0.0925.
+
+&#x20; Random baseline 2.25e-05 / 1.13e-04 / 2.25e-04 / 2.54e-04.
+
+&#x20; Median rank of the query product is 82 of 44,441.
+
+&#x20; Ceiling: 18,413 of 44,441 rows share a productDisplayName with another
+
+&#x20; row, so exact-id relevance is partly unreachable from text. eval.py also
+
+&#x20; prints an identical-name diagnostic (R@1 0.0750, MRR 0.1397) to separate
+
+&#x20; label ambiguity from genuine retrieval failure. Do not quote the
+
+&#x20; diagnostic as the strict metric.
+
+\- strict mode, image -> text, candidate pool = the 1000 sampled
+
+&#x20; productDisplayNames (979 distinct):
+
+&#x20; R@1 0.3470, R@5 0.6630, MRR 0.4929.
+
+&#x20; Random baseline 1.00e-03 / 5.00e-03 / 7.50e-03. Median rank 3.
+
+\- Both directions are one command: python -m src.eval --mode both, 3.4 s.
+
 
 
 \## Commands
@@ -136,7 +188,7 @@ Model:   https://huggingface.co/openai/clip-vit-base-patch32
 
 \- Embed:    python -m src.embed
 
-\- Evaluate: python -m src.eval
+\- Evaluate: python -m src.eval --mode both
 
 \- API:      flask --app api.app run --debug
 
